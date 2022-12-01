@@ -58,6 +58,7 @@ public class Main {
 
         DriverCategoryD man3 = new DriverCategoryD("Корней Корнеич", "D", 5, volgaBus);
         System.out.println(man3);
+
     }
 
 }
