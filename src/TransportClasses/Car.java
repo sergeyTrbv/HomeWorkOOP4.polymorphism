@@ -2,11 +2,18 @@ package TransportClasses;
 
 public class Car extends Transport implements Competing {
 
+private TypeOfBody typeOfBody;
 
-    public Car(String brand, String model, double engineVolume) {
+    public Car(String brand, String model, double engineVolume,TypeOfBody typeOfBody) {
         super(brand, model, engineVolume);
+        this.typeOfBody=typeOfBody;
     }
 
+    public String toString() {
+        return "Легковой автомобиль: " + getBrand() +
+                " " + getModel() +
+                "; Объем двигателя: " + getEngineVolume()+ "; Тип Кузова: " + getTypeOfBody();
+    }
     @Override
     public void startMoving() {
         System.out.println("Быстро начинаю движение с пробуксовкой");
@@ -31,4 +38,22 @@ public class Car extends Transport implements Competing {
     public int maxspeed() {
         return 200;
     }
+
+    public void printType() {
+        if (typeOfBody == null) {
+            System.out.println("Данных по авто недостаточно");
+        } else {
+            System.out.println("Тип кузова авто: " + typeOfBody.getName());
+        }
+    }
+
+    public TypeOfBody getTypeOfBody() {
+        return typeOfBody;
+    }
+
+    public void setTypeOfBody(TypeOfBody typeOfBody) {
+        this.typeOfBody = typeOfBody;
+    }
+
+
 }

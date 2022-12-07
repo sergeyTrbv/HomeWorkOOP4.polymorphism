@@ -1,9 +1,18 @@
 package TransportClasses;
 
-public class Trucks extends Transport implements Competing{
+public class Trucks extends Transport implements Competing {
 
-    public Trucks(String brand, String model, double engineVolume) {
+    private Tonnage tonnage;
+
+    public Trucks(String brand, String model, double engineVolume, Tonnage tonnage) {
         super(brand, model, engineVolume);
+        this.tonnage = tonnage;
+    }
+
+    public String toString() {
+        return "Грузовой автомобиль: " + getBrand() +
+                " " + getModel() +
+                "; объем двигателя: " + getEngineVolume() + "; Грузоподъёмность: " + getTonnage();
     }
 
     @Override
@@ -29,5 +38,23 @@ public class Trucks extends Transport implements Competing{
     @Override
     public int maxspeed() {
         return 120;
+    }
+
+    public void printType() {
+        if (tonnage == null) {
+            System.out.println("Данных по авто недостаточно");
+        } else {
+            String from = tonnage.getFrom() == null ? "" : "от " + tonnage.getFrom() + " т., ";
+            String to = tonnage.getTo() == null ? "" : "до " + tonnage.getTo() + " т.";
+            System.out.println("Грузоподъемность авто: " + from + to);
+        }
+    }
+
+    public Tonnage getTonnage() {
+        return tonnage;
+    }
+
+    public void setTonnage(Tonnage tonnage) {
+        this.tonnage = tonnage;
     }
 }

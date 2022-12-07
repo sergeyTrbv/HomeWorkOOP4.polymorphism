@@ -12,12 +12,7 @@ public abstract class Transport {
         this.engineVolume = engineVolume >= 0.8d ? engineVolume : 0.8;
     }
 
-    @Override
-    public String toString() {
-        return "Транспорт: " + brand + ". Модель: " + model + ". Объем двигателя: " + engineVolume;
-    }
-
-    public static String validOrDefault(String value, String defaultValue) {
+       public static String validOrDefault(String value, String defaultValue) {
         if (value == null || value.isBlank()) {
             return defaultValue;
         } else {
@@ -28,6 +23,7 @@ public abstract class Transport {
     public abstract void startMoving();
 
     public abstract void stopMoving();
+    public abstract void printType();
 
     public String getBrand() {
         return brand;
