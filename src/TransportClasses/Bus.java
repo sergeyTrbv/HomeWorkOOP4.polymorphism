@@ -3,9 +3,10 @@ package TransportClasses;
 public class Bus extends Transport implements Competing {
 
     private Capacity capacity;
-    public Bus(String brand, String model, double engineVolume,Capacity capacity) {
+
+    public Bus(String brand, String model, double engineVolume, Capacity capacity) {
         super(brand, model, engineVolume);
-        this.capacity=capacity;
+        this.capacity = capacity;
     }
 
     @Override
@@ -47,6 +48,12 @@ public class Bus extends Transport implements Competing {
     @Override
     public int maxspeed() {
         return 160;
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        System.out.println("Автобус " + getBrand() + getModel() + " в диагностике не требуется");
+        return true;
     }
 
     public Capacity getCapacity() {

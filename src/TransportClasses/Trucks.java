@@ -15,6 +15,7 @@ public class Trucks extends Transport implements Competing {
                 "; объем двигателя: " + getEngineVolume() + "; Грузоподъёмность: " + getTonnage();
     }
 
+
     @Override
     public void startMoving() {
         System.out.println("Проверяю закреплен ли груз, очень медленно начинаю движение");
@@ -48,6 +49,11 @@ public class Trucks extends Transport implements Competing {
             String to = tonnage.getTo() == null ? "" : "до " + tonnage.getTo() + " т.";
             System.out.println("Грузоподъемность авто: " + from + to);
         }
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.75;
     }
 
     public Tonnage getTonnage() {

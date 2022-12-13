@@ -19,6 +19,7 @@ public abstract class Transport {
             return value;
         }
     }
+    public abstract boolean passDiagnostics();
 
     public abstract void startMoving();
 

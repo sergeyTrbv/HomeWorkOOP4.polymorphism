@@ -2,18 +2,20 @@ package TransportClasses;
 
 public class Car extends Transport implements Competing {
 
-private TypeOfBody typeOfBody;
+    private TypeOfBody typeOfBody;
 
-    public Car(String brand, String model, double engineVolume,TypeOfBody typeOfBody) {
+    public Car(String brand, String model, double engineVolume, TypeOfBody typeOfBody) {
         super(brand, model, engineVolume);
-        this.typeOfBody=typeOfBody;
+        this.typeOfBody = typeOfBody;
     }
 
     public String toString() {
         return "Легковой автомобиль: " + getBrand() +
                 " " + getModel() +
-                "; Объем двигателя: " + getEngineVolume()+ "; Тип Кузова: " + getTypeOfBody();
+                "; Объем двигателя: " + getEngineVolume() + "; Тип Кузова: " + getTypeOfBody();
     }
+
+
     @Override
     public void startMoving() {
         System.out.println("Быстро начинаю движение с пробуксовкой");
@@ -31,7 +33,7 @@ private TypeOfBody typeOfBody;
 
 
     public double bestLapTime() {
-        return  1.2;
+        return 1.2;
     }
 
     @Override
@@ -45,6 +47,11 @@ private TypeOfBody typeOfBody;
         } else {
             System.out.println("Тип кузова авто: " + typeOfBody.getName());
         }
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.5;
     }
 
     public TypeOfBody getTypeOfBody() {
