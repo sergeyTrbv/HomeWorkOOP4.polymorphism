@@ -1,31 +1,57 @@
+import Driver.Driver;
 import Driver.DriverCategoryB;
 import Driver.DriverCategoryC;
 import Driver.DriverCategoryD;
 import TransportClasses.*;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
+        Mechanic<Car> petr = new Mechanic<>("Петр", "Петров", "Pirelle");
+        Mechanic<Transport> vasya = new Mechanic<>("Василий", "Васькович", "Pirelle");
+        Sponsor lukoil = new Sponsor("Лукойл", 2_000_000);
+        Sponsor michlen = new Sponsor("Мишлен", 3_000_000);
+
         Car chevrolet = new Car("Chevrolet", "Lacetti", 1.4d, TypeOfBody.HATCHBACK);
-        Car skoda = new Car("Skoda", "Fabia", 1.2, TypeOfBody.HATCHBACK);
-        Car renault = new Car("Renault", "Sandero Stapway", 1.6, TypeOfBody.HATCHBACK);
-        Car lada = new Car("Lada", "2114", 1.6, TypeOfBody.SEDAN);
+
+        chevrolet.addDriver(new DriverCategoryB("Иванов Иван", "B", 2,
+                chevrolet, "категория 1"));
+        chevrolet.addMechanic(petr);
+        chevrolet.addSponsor(lukoil, michlen);
+
+//        Car skoda = new Car("Skoda", "Fabia", 1.2, TypeOfBody.HATCHBACK);
+//        Car renault = new Car("Renault", "Sandero Stapway", 1.6, TypeOfBody.HATCHBACK);
+//        Car lada = new Car("Lada", "2114", 1.6, TypeOfBody.SEDAN);
 
         Bus manBus = new Bus("Man", "Lion`s Coach", 12.0, Capacity.EXTRA_SMALL);
-        Bus volgaBus = new Bus("Волгабас", "5270", 6.8, Capacity.LARGE);
-        Bus hyundaiBus = new Bus("Hyundai", "Universe", 12.3, Capacity.MEDIUM);
-        Bus volvoBus = new Bus("Volvo", "B10M", 9.6, Capacity.EXTRA_LARGE);
+
+        manBus.addDriver(new DriverCategoryD("Корней Корнеич", "D", 5,
+                manBus, "категория 3"));
+        manBus.addMechanic(vasya);
+        manBus.addSponsor(michlen);
+
+//        Bus volgaBus = new Bus("Волгабас", "5270", 6.8, Capacity.LARGE);
+//        Bus hyundaiBus = new Bus("Hyundai", "Universe", 12.3, Capacity.MEDIUM);
+//        Bus volvoBus = new Bus("Volvo", "B10M", 9.6, Capacity.EXTRA_LARGE);
 
         Trucks kamazTruck = new Trucks("КамАЗ", "4325", 6.7, Tonnage.N1);
-        Trucks manTruckTruck = new Trucks("Man", "TGS 6x6", 12.4, Tonnage.N2);
-        Trucks mersedesBenzTruck = new Trucks("Mersedes-Benz 6x6", "Arocs", 10.7, Tonnage.N3);
-        Trucks renaultTruck = new Trucks("Renault", "Premium", 7.2, null);
 
-        passDiagnostics(
-                chevrolet, skoda, renault, lada,
-                kamazTruck, manTruckTruck, mersedesBenzTruck, renaultTruck,
-                manBus, volgaBus, hyundaiBus, volgaBus
-        );
+        kamazTruck.addDriver(new DriverCategoryC("Сергей Сергеевич", "C", 3,
+                kamazTruck, "категория 2"));
+        kamazTruck.addMechanic(vasya);
+        kamazTruck.addSponsor(lukoil);
+
+//        Trucks manTruckTruck = new Trucks("Man", "TGS 6x6", 12.4, Tonnage.N2);
+//        Trucks mersedesBenzTruck = new Trucks("Mersedes-Benz 6x6", "Arocs", 10.7, Tonnage.N3);
+//        Trucks renaultTruck = new Trucks("Renault", "Premium", 7.2, null);
+
+//        passDiagnostics(
+//                chevrolet, skoda, renault, lada,
+//                kamazTruck, manTruckTruck, mersedesBenzTruck, renaultTruck,
+//                manBus, volgaBus, hyundaiBus, volgaBus
+//        );
 
 
 //        System.out.println(chevrolet);
@@ -47,25 +73,65 @@ public class Main {
 //        System.out.println(chevrolet.bestLapTime());
 //        System.out.println(chevrolet.maxspeed());
 //
-//        DriverCategoryB man1 = new DriverCategoryB("Иванов Иван", "B",2,chevrolet);
+//        DriverCategoryB man1 = new DriverCategoryB("Иванов Иван", "B", 2,
+//                chevrolet, "категория 1");
 //        System.out.println(man1);
 //        chevrolet.startMoving();
 //        chevrolet.pitStop();
 //        chevrolet.stopMoving();
 //
-//        DriverCategoryC man2 = new DriverCategoryC("Сергей Сергеевич","C", 3,kamazTruck);
+//        DriverCategoryC man2 = new DriverCategoryC("Сергей Сергеевич", "C", 3,
+//                kamazTruck, "категория 2");
 //        System.out.println(man2);
 //
-//        DriverCategoryD man3 = new DriverCategoryD("Корней Корнеич", "D", 5, volgaBus);
+//        DriverCategoryD man3 = new DriverCategoryD("Корней Корнеич", "D", 5,
+//                volgaBus, "категория 3");
 //        System.out.println(man3);
 //
 //        System.out.println(chevrolet.getTypeOfBody());
 //        System.out.println(volgaBus.getCapacity());
 //        System.out.println(kamazTruck.getTonnage());
 
-        manBus.passDiagnostics();
+//        manBus.passDiagnostics();
+
+//        List<Transport> transports = List.of(                                                       //Список автомобилей
+//                chevrolet, skoda, renault, lada,
+//                kamazTruck, manTruckTruck, renaultTruck, mersedesBenzTruck,
+//                volvoBus, hyundaiBus, manBus, volvoBus
+//        );
+        ServiceStation serviceStation= new ServiceStation();
+        serviceStation.addCar(chevrolet);
+        serviceStation.addTruck(kamazTruck);
+        serviceStation.service();
+        serviceStation.service();
 
 
+      List<Transport> transports = List.of(chevrolet,kamazTruck,manBus);
+
+        for (Transport transport: transports){
+          printInfo(transport);
+      }
+
+
+
+    }
+
+
+    private static void printInfo(Transport transport) {                             //Метод инфо об авто( модель, водитель)
+        System.out.println("Информация по авто " + transport.getBrand() + " " + transport.getModel());
+        System.out.println("Водители: ");
+        for (Driver<?> driver : transport.getDrivers()) {
+            System.out.println(driver.getFioDriver());
+        }
+        System.out.println("Механик: ");
+        for (Mechanic<?> mechanic : transport.getMechanics()) {
+            System.out.println(mechanic.getName() + " " + mechanic.getSurname() + " из " + mechanic.getCompany());
+        }
+        System.out.println("Спонсор: ");
+        for (Sponsor sponsor : transport.getSponsors()) {
+            System.out.println(sponsor.getName()+ ", сумма поддержки: " + sponsor.getAmount());
+        }
+        System.out.println(" ");
     }
 
     private static void passDiagnostics(Transport... transports) {
@@ -73,15 +139,16 @@ public class Main {
             serviceTransport(transport);
         }
     }
-private static void serviceTransport(Transport transport){
-    try {
-        if (!transport.passDiagnostics()){
-        throw new RuntimeException("Автомобиль " + transport.getBrand() +" "+  transport.getModel()
-                + " не прошёл дианостику");
+
+    private static void serviceTransport(Transport transport) {
+        try {
+            if (!transport.passDiagnostics()) {
+                throw new RuntimeException("Автомобиль " + transport.getBrand() + " " + transport.getModel()
+                        + " не прошёл дианостику");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
-    }catch (RuntimeException e){
-        System.out.println(e.getMessage());
     }
-}
 
 }

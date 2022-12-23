@@ -55,6 +55,9 @@ public class Bus extends Transport implements Competing {
         System.out.println("Автобус " + getBrand() + getModel() + " в диагностике не требуется");
         return true;
     }
+    public void repair() {                                                                    //Метод "Починить автобус"
+        System.out.println("Автобус " + getBrand() + " " + getModel() + " починен");
+    }
 
     public Capacity getCapacity() {
         return capacity;

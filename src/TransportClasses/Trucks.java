@@ -2,7 +2,7 @@ package TransportClasses;
 
 public class Trucks extends Transport implements Competing {
 
-    private Tonnage tonnage;
+    private Tonnage tonnage;   //Грузоподъёмность
 
     public Trucks(String brand, String model, double engineVolume, Tonnage tonnage) {
         super(brand, model, engineVolume);
@@ -17,31 +17,31 @@ public class Trucks extends Transport implements Competing {
 
 
     @Override
-    public void startMoving() {
+    public void startMoving() {                               //Переопределенный метод "Начать движение"
         System.out.println("Проверяю закреплен ли груз, очень медленно начинаю движение");
     }
 
     @Override
-    public void stopMoving() {
+    public void stopMoving() {                               //Переопределенный метод "Закончить движение"
         System.out.println("Очень медленно и аккуратно заканчиваю движение");
     }
 
     @Override
-    public void pitStop() {
+    public void pitStop() {                                  //Переопределенный метод "Пит-стоп"
         System.out.println("Заезжаю на пит-стоп для грузовиков");
     }
 
     @Override
-    public double bestLapTime() {
+    public double bestLapTime() {                          //Переопределенный метод "Лучшее время круга"
         return 0.9;
     }
 
     @Override
-    public int maxspeed() {
+    public int maxspeed() {                             //Переопределенный метод "Максимальная скорость"
         return 120;
     }
 
-    public void printType() {
+    public void printType() {                        //Переопределенный метод "Тип кузова" но сделан как "грузоподъёсность"
         if (tonnage == null) {
             System.out.println("Данных по авто недостаточно");
         } else {
@@ -52,9 +52,14 @@ public class Trucks extends Transport implements Competing {
     }
 
     @Override
-    public boolean passDiagnostics() {
+    public boolean passDiagnostics() {              //Метод "Пройти диагностику". Рандомный шанс пройти её
         return Math.random() > 0.75;
     }
+
+    public void repair() {                             //Метод "Починить грузовик"
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " починен");
+    }
+
 
     public Tonnage getTonnage() {
         return tonnage;
