@@ -14,6 +14,11 @@ public class Mechanic<T extends Transport> {
         this.company = company;
     }
 
+    @Override
+    public String toString() {
+        return name+" "+ surname;
+    }
+
     public boolean service(T t) {         //Переопределенный метод "Обслужить машину"
         return t.passDiagnostics();
     }

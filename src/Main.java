@@ -4,7 +4,7 @@ import Driver.DriverCategoryC;
 import Driver.DriverCategoryD;
 import TransportClasses.*;
 
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -94,24 +94,39 @@ public class Main {
 
 //        manBus.passDiagnostics();
 
-//        List<Transport> transports = List.of(                                                       //Список автомобилей
-//                chevrolet, skoda, renault, lada,
-//                kamazTruck, manTruckTruck, renaultTruck, mersedesBenzTruck,
-//                volvoBus, hyundaiBus, manBus, volvoBus
+        Set<Transport> setOfCars = new HashSet<>();                                 //Список автомобилей
+
+        setOfCars.add(kamazTruck);
+        setOfCars.add(manBus);
+        setOfCars.add(chevrolet);
+        setOfCars.add(chevrolet); //повторил автомобиль 2 раза чтобы убедиться что при выводе в консоль выдаст только одно значение
+
+        System.out.println(Arrays.toString(setOfCars.toArray()));
+
+
+        Map<Mechanic, Transport> mapOfMechanic = new LinkedHashMap<>();
+
+        mapOfMechanic.put(petr, chevrolet);
+        mapOfMechanic.put(vasya, manBus);
+
+        for (Map.Entry<Mechanic,Transport> mechanic: mapOfMechanic.entrySet()){
+            System.out.println("Механик: "+ mechanic.getKey()+" будет чинить: "+ mechanic.getValue());
+        }
+
+
 //        );
-        ServiceStation serviceStation= new ServiceStation();
-        serviceStation.addCar(chevrolet);
-        serviceStation.addTruck(kamazTruck);
-        serviceStation.service();
-        serviceStation.service();
-
-
-      List<Transport> transports = List.of(chevrolet,kamazTruck,manBus);
-
-        for (Transport transport: transports){
-          printInfo(transport);
-      }
-
+//        ServiceStation serviceStation= new ServiceStation();
+//        serviceStation.addCar(chevrolet);
+//        serviceStation.addTruck(kamazTruck);
+//        serviceStation.service();
+//        serviceStation.service();
+//
+//
+//      List<Transport> transports = List.of(chevrolet,kamazTruck,manBus);
+//
+//        for (Transport transport: transports){
+//          printInfo(transport);
+//      }
 
 
     }
@@ -129,7 +144,7 @@ public class Main {
         }
         System.out.println("Спонсор: ");
         for (Sponsor sponsor : transport.getSponsors()) {
-            System.out.println(sponsor.getName()+ ", сумма поддержки: " + sponsor.getAmount());
+            System.out.println(sponsor.getName() + ", сумма поддержки: " + sponsor.getAmount());
         }
         System.out.println(" ");
     }
