@@ -94,6 +94,7 @@ public class Main {
 
 //        manBus.passDiagnostics();
 
+
         Set<Transport> setOfCars = new HashSet<>();                                 //Список автомобилей
 
         setOfCars.add(kamazTruck);
