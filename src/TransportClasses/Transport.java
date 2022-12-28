@@ -2,9 +2,7 @@ package TransportClasses;
 
 import Driver.Driver;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public abstract class Transport {
@@ -12,9 +10,9 @@ public abstract class Transport {
     private String brand;
     private String model;
     private double engineVolume;  //Мощность двигателя
-    private final List<Driver<?>> drivers = new ArrayList<>();                      //Создание пустого списка "Водители"
-    private final List<Mechanic<?>> mechanics = new ArrayList<>();                  //Создание пустого списка "Механики"
-    private final List<Sponsor> sponsors = new ArrayList<>();                       //Создание пустого списка "Спонсоры"
+    private final Set<Driver<?>> drivers = new HashSet<>();                 //Создание пустого списка "Водители"
+    private final Set<Mechanic<?>> mechanics = new HashSet<>();                  //Создание пустого списка "Механики"
+    private final Set<Sponsor> sponsors = new HashSet<>();                       //Создание пустого списка "Спонсоры"
 
     public Transport(String brand, String model, double engineVolume) {                                    //Конструктор
         this.brand = validOrDefault(brand, "no name brand");
@@ -70,15 +68,17 @@ public abstract class Transport {
         this.engineVolume = engineVolume;
     }
 
-    public List<Driver<?>> getDrivers() {
+    public Set<Driver<?>> getDrivers() {
         return drivers;
     }
 
-    public List<Mechanic<?>> getMechanics() {
+    public Set<Mechanic<?>> getMechanics() {
         return mechanics;
     }
 
-    public List<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return sponsors;
     }
+
+
 }

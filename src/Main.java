@@ -3,7 +3,7 @@ import Driver.DriverCategoryB;
 import Driver.DriverCategoryC;
 import Driver.DriverCategoryD;
 import TransportClasses.*;
-
+import java.util.Iterator;
 import java.util.*;
 
 public class Main {
@@ -11,18 +11,19 @@ public class Main {
 
         Mechanic<Car> petr = new Mechanic<>("Петр", "Петров", "Pirelle");
         Mechanic<Transport> vasya = new Mechanic<>("Василий", "Васькович", "Pirelle");
+
         Sponsor lukoil = new Sponsor("Лукойл", 2_000_000);
         Sponsor michlen = new Sponsor("Мишлен", 3_000_000);
 
         Car chevrolet = new Car("Chevrolet", "Lacetti", 1.4d, TypeOfBody.HATCHBACK);
 
-        chevrolet.addDriver(new DriverCategoryB("Иванов Иван", "B", 2,
-                chevrolet, "категория 1"));
+//        chevrolet.addDriver(new DriverCategoryB("Иванов Иван", "B", 2,
+//                chevrolet, "категория 1"));
         chevrolet.addMechanic(petr);
         chevrolet.addSponsor(lukoil, michlen);
 
-//        Car skoda = new Car("Skoda", "Fabia", 1.2, TypeOfBody.HATCHBACK);
-//        Car renault = new Car("Renault", "Sandero Stapway", 1.6, TypeOfBody.HATCHBACK);
+        Car skoda = new Car("Skoda", "Fabia", 1.2, TypeOfBody.HATCHBACK);
+        Car renault = new Car("Renault", "Sandero Stapway", 1.6, TypeOfBody.HATCHBACK);
 //        Car lada = new Car("Lada", "2114", 1.6, TypeOfBody.SEDAN);
 
         Bus manBus = new Bus("Man", "Lion`s Coach", 12.0, Capacity.EXTRA_SMALL);
@@ -95,24 +96,24 @@ public class Main {
 //        manBus.passDiagnostics();
 
 
-        Set<Transport> setOfCars = new HashSet<>();                                 //Список автомобилей
-
-        setOfCars.add(kamazTruck);
-        setOfCars.add(manBus);
-        setOfCars.add(chevrolet);
-        setOfCars.add(chevrolet); //повторил автомобиль 2 раза чтобы убедиться что при выводе в консоль выдаст только одно значение
-
-        System.out.println(Arrays.toString(setOfCars.toArray()));
-
-
-        Map<Mechanic, Transport> mapOfMechanic = new LinkedHashMap<>();
-
-        mapOfMechanic.put(petr, chevrolet);
-        mapOfMechanic.put(vasya, manBus);
-
-        for (Map.Entry<Mechanic,Transport> mechanic: mapOfMechanic.entrySet()){
-            System.out.println("Механик: "+ mechanic.getKey()+" будет чинить: "+ mechanic.getValue());
-        }
+//        Set<Transport> setOfCars = new HashSet<>();                                 //Список автомобилей
+//
+//        setOfCars.add(kamazTruck);
+//        setOfCars.add(manBus);
+//        setOfCars.add(chevrolet);
+//        setOfCars.add(chevrolet); //повторил автомобиль 2 раза чтобы убедиться что при выводе в консоль выдаст только одно значение
+//
+//        System.out.println(Arrays.toString(setOfCars.toArray()));
+//
+//
+//        Map<Mechanic, Transport> mapOfMechanic = new LinkedHashMap<>();
+//
+//        mapOfMechanic.put(petr, chevrolet);
+//        mapOfMechanic.put(vasya, manBus);
+//
+//        for (Map.Entry<Mechanic, Transport> mechanic : mapOfMechanic.entrySet()) {
+//            System.out.println("Механик: " + mechanic.getKey() + " будет чинить: " + mechanic.getValue());
+//        }
 
 
 //        );
@@ -130,6 +131,45 @@ public class Main {
 //      }
 
 
+
+        //создаю новых водителей
+        DriverCategoryB mixail = new DriverCategoryB("Михаил", "гоночная лицензия", 2, chevrolet, "есть категория");
+        DriverCategoryB olga = new DriverCategoryB("Ольга", "гоночная лицензия", 1, chevrolet, "есть категория");
+        DriverCategoryB sergey = new DriverCategoryB("Сергей", "гоночная лицензия", 3, chevrolet, "есть категория");
+
+        //Добавляю водителей в список водителей  к объектам из класса машин
+        chevrolet.addDriver(mixail);
+        chevrolet.addDriver(mixail); //специльно добавляю 2 раз для проверки
+        chevrolet.addDriver(olga);
+        renault.addDriver(olga);
+        skoda.addDriver(sergey);
+
+        System.out.println(chevrolet.getDrivers());
+        System.out.println(renault.getDrivers());
+        System.out.println(skoda.getDrivers());
+
+        //Добавляю механиков в список механиков к объектам из класса машин
+        chevrolet.addMechanic(petr);
+        chevrolet.addSponsor(lukoil, michlen);
+        System.out.println(chevrolet.getMechanics());
+
+        System.out.println(" ");
+
+        //Итерирую список водителей
+        Iterator<Driver<?>> driverIteratorChevrolet = chevrolet.getDrivers().iterator();
+        while (driverIteratorChevrolet.hasNext()) {
+            System.out.println(driverIteratorChevrolet.next());
+        }
+        System.out.println(" ");
+        Iterator<Driver<?>> driverIteratorSkoda = skoda.getDrivers().iterator();
+        while (driverIteratorSkoda.hasNext()) {
+            System.out.println(driverIteratorSkoda.next());
+        }
+        System.out.println(" ");
+        Iterator<Driver<?>> driverIteratorRenault = renault.getDrivers().iterator();
+        while (driverIteratorRenault.hasNext()) {
+            System.out.println(driverIteratorRenault.next());
+        }
     }
 
 
