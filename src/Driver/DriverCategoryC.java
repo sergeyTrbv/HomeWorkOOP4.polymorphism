@@ -6,7 +6,7 @@ import TransportClasses.Trucks;
 public class DriverCategoryC extends Driver<Trucks> {
 
 
-    public DriverCategoryC(String fioDriver, String driversLicenze, double experienceDriver, Trucks transport) {
-        super(fioDriver, "C", experienceDriver, transport);
+    public DriverCategoryC(String fioDriver, String driversLicenze, double experienceDriver, Trucks transport,String category) {
+        super(fioDriver, "C", experienceDriver, transport,category);
     }
 }
